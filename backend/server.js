@@ -15,13 +15,32 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.post("/search-jobs", (req, res) => {
-  runAutomation().catch(console.error);
+app.post("/search-jobs", async (req, res) => {
+  console.log("Request received");
 
-  res.json({
-    success: true,
-    message: "Automation started in background",
-  });
+  try {
+    console.log("Starting automation");
+
+    const result = await runAutomation();
+
+    console.log("Automation finished");
+    console.log("Result:", result);
+
+    res.json({
+      success: true,
+      data: result,
+    });
+
+    console.log("Response sent");
+  } catch (err) {
+    console.log("Error occurred");
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
 });
 
 app.listen(PORT, () => {
