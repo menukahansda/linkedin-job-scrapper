@@ -8,7 +8,9 @@ function App() {
       return;
     }
 
-    fetch(`${API_URL}/search-jobs`)
+    fetch(`${API_URL}/search-jobs`, {
+      method: "POST",
+    })
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
