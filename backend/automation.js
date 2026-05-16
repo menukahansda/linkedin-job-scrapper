@@ -71,7 +71,7 @@ async function searchJobs(page, roleKeywords, hiringWords) {
 
     if (matchedKeywords.length === 0) continue;
 
-    let postTitle = "General Position";
+    let postTitle = "General";
     for (const role of roleKeywords) {
       if (lowerText.includes(role.toLowerCase())) {
         postTitle = role.charAt(0).toUpperCase() + role.slice(1);
