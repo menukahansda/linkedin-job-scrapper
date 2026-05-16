@@ -7,7 +7,7 @@ function App() {
       console.error("VITE_API_URL is not defined");
       return;
     }
-
+    console.log("Sending request to:", `${API_URL}/search-jobs`);
     fetch(`${API_URL}/search-jobs`, {
       method: "POST",
     })
