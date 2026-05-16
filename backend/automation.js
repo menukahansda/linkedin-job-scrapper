@@ -81,9 +81,10 @@ async function searchJobs(page, roleKeywords, hiringWords) {
 
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}/g;
     const emails = text.match(emailRegex) || [];
-    const cleanEmails = emails != [] ? emails.filter(
-      (e) => !e.toLowerCase().includes("noreply"),
-    ) : [];
+    const cleanEmails =
+      emails != []
+        ? emails.filter((e) => !e.toLowerCase().includes("noreply"))
+        : [];
 
     const urlRegex = /https?:\/\/[^\s]+/g;
     const urlsFound = (text.match(urlRegex) || []).map((url) =>
@@ -131,7 +132,7 @@ async function sendEmail(transporter, resume_file_path, post, emails, msg) {
   });
 }
 
-export  async function runAutomation() {
+export async function runAutomation() {
   const browser = await chromium.launch({
     headless: true,
   });
@@ -230,11 +231,13 @@ export  async function runAutomation() {
         emails.forEach((email) => console.log(`- ${email}`));
       }
     }
+    return {
+      recruiterEmails,
+      recruitingUrls,
+    };
   } finally {
     await browser.close();
   }
 }
 
 // runAutomation().catch(console.error);
-
-
