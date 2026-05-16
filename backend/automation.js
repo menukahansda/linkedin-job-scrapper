@@ -133,7 +133,7 @@ async function sendEmail(transporter, resume_file_path, post, emails, msg) {
 
 export  async function runAutomation() {
   const browser = await chromium.launch({
-    headless: false, // Set to true for headless mode
+    headless: true,
   });
   try {
     const context = await browser.newContext();
