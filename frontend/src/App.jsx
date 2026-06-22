@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col gap-6 p-8">
         <form onSubmit={handleKeywordButton}>
           <input
             type="text"
