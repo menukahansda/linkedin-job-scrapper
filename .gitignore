@@ -5,4 +5,6 @@ backend/MenuKa_Hansda_Resume.pdf
 frontend/node_modules
 frontend/.env
 
+node_modules/
+
 notes.md
