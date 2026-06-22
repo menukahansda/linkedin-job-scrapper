@@ -41,11 +41,13 @@ export default function App() {
           Add
         </button>
       </form>
-      {keywordArray.length > 0 &&
-        keywordArray.map((keyword) => (
-          <KeywordChip key={keyword} keyword={keyword} />
-        ))
-      }
+      <div className="flex flex-wrap gap-2 mt-6">
+        {keywordArray.length > 0 &&
+          keywordArray.map((keyword) => (
+            <KeywordChip key={keyword} keyword={keyword} />
+          ))}
+      </div>
+
       <button className="input-btn" onClick={handleSearchButton}>
         Search jobs
       </button>
