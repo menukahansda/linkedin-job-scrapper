@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { KeywordChip } from "./components/KeywordChip";
 import "./App.css";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function App() {
@@ -35,8 +37,15 @@ export default function App() {
           value={keyword}
           onChange={(e) => setkeyword(e.target.value)}
         />
-        <button className="input-btn" type="submit">Add</button>
+        <button className="input-btn" type="submit">
+          Add
+        </button>
       </form>
+      {keywordArray.length > 0 &&
+        keywordArray.map((keyword) => (
+          <KeywordChip key={keyword} keyword={keyword} />
+        ))
+      }
       <button className="input-btn" onClick={handleSearchButton}>
         Search jobs
       </button>
