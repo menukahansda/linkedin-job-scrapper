@@ -1,8 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 const API_URL = import.meta.env.VITE_API_URL;
 
-function App() {
-  function handleClick() {
+export default function App() {
+  const [keywordArray, setKeywordArray] = useState([]);
+  const [keyword, setkeyword] = useState("");
+
+  function handleKeywordButton(e) {
+    e.preventDefault();
+    if (!keyword.trim()) return; // prevent empty keywords
+
+    setKeywordArray((prev) => [...prev, keyword.trim()]);
+    setkeyword("");
+  }
+  function handleSearchButton() {
     if (!API_URL) {
       console.error("VITE_API_URL is not defined");
       return;
@@ -18,11 +29,17 @@ function App() {
 
   return (
     <>
-      <button className="search-job-button" onClick={handleClick}>
+      <form onSubmit={handleKeywordButton}>
+        <input
+          type="text"
+          value={keyword}
+          onChange={(e) => setkeyword(e.target.value)}
+        />
+        <button className="input-btn" type="submit">Add</button>
+      </form>
+      <button className="input-btn" onClick={handleSearchButton}>
         Search jobs
       </button>
     </>
   );
 }
-
-export default App;
