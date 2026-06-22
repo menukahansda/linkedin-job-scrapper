@@ -1,0 +1,27 @@
+{
+  "name": "linkedin-job-scraper",
+  "version": "1.0.0",
+  "description": "This is an automation API that scrapes job postings from LinkedIn. It was built as a task/assessment project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm start",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/menukahansda/linkedin-job-scrapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/menukahansda/linkedin-job-scrapper/issues"
+  },
+  "homepage": "https://github.com/menukahansda/linkedin-job-scrapper#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
