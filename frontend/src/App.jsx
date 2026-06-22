@@ -31,26 +31,28 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleKeywordButton}>
-        <input
-          type="text"
-          value={keyword}
-          onChange={(e) => setkeyword(e.target.value)}
-        />
-        <button className="input-btn" type="submit">
-          Add
-        </button>
-      </form>
-      <div className="flex flex-wrap gap-2 mt-6">
-        {keywordArray.length > 0 &&
-          keywordArray.map((keyword) => (
-            <KeywordChip key={keyword} keyword={keyword} />
-          ))}
-      </div>
+      <div>
+        <form onSubmit={handleKeywordButton}>
+          <input
+            type="text"
+            value={keyword}
+            onChange={(e) => setkeyword(e.target.value)}
+          />
+          <button className="input-btn" type="submit">
+            Add
+          </button>
+        </form>
+        <div className="flex flex-wrap gap-2 mt-6">
+          {keywordArray.length > 0 &&
+            keywordArray.map((keyword) => (
+              <KeywordChip key={keyword} keyword={keyword} />
+            ))}
+        </div>
 
-      <button className="input-btn" onClick={handleSearchButton}>
-        Search jobs
-      </button>
+        <button className="input-btn" onClick={handleSearchButton}>
+          Search jobs
+        </button>
+      </div>
     </>
   );
 }
