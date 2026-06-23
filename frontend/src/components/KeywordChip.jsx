@@ -4,7 +4,7 @@ export function KeywordChip({keyword}){
         <>
             <span className="keyword-chip" >
                 {keyword}
-                <X color='white' size={10}/>
+                <X size={10} className="opacity-60 hover:opacity-100 cursor-pointer"/>
             </span>
         </>
     )
