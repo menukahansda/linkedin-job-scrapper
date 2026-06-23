@@ -239,5 +239,6 @@ export async function runAutomation() {
     await browser.close();
   }
 }
-
-// runAutomation().catch(console.error);
+if (import.meta.url === `file://${process.argv[1]}`) {
+  runAutomation().catch(console.error);
+}
