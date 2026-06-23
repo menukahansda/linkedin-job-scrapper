@@ -10,9 +10,14 @@ export default function App() {
 
   function handleKeywordButton(e) {
     e.preventDefault();
-    if (!keyword.trim()) return; // prevent empty keywords
+    if (!keyword) return; // prevent empty keywords
 
-    setKeywordArray((prev) => [...prev, keyword.trim()]);
+    if(keywordArray.includes(keyword)){
+      // return a alert
+      setkeyword("");
+      return;
+    }
+    setKeywordArray((prev) => [...prev, keyword]);
     setkeyword("");
   }
   function handleSearchButton() {
@@ -33,7 +38,7 @@ export default function App() {
     const newKeywords = keywordArray.filter(keyword=> keyword !== key);
     setKeywordArray(newKeywords);
   }
-  
+
   return (
     <>
       <div className="flex flex-col items-center gap-6 p-8">
@@ -42,7 +47,7 @@ export default function App() {
           <input
             type="text"
             value={keyword}
-            onChange={(e) => setkeyword(e.target.value)}
+            onChange={(e) => setkeyword(e.target.value.trim())}
             className="scraper-input"
           />
           <button className="input-btn" type="submit">
