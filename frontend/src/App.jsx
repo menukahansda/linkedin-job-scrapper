@@ -53,7 +53,10 @@ export default function App() {
             <input
               type="text"
               value={keyword}
-              onChange={(e) => setkeyword(e.target.value.trim())}
+              onChange={(e) => {
+                setkeyword(e.target.value.trim());
+                setError("");
+              }}
               className="scraper-input"
             />
             <button className="input-btn" type="submit">
