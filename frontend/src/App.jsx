@@ -54,6 +54,7 @@ export default function App() {
             <input
               type="text"
               value={keyword}
+              placeholder="Enter job role keywords..."
               onChange={(e) => {
                 setkeyword(e.target.value);
                 setError("");
