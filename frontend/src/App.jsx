@@ -8,14 +8,14 @@ export default function App() {
   const [keywordArray, setKeywordArray] = useState([]);
   const [keyword, setkeyword] = useState("");
   const [error, setError] = useState("");
-  
+
   function handleKeywordButton(e) {
     e.preventDefault();
     if (!keyword) return; // prevent empty keywords
 
-    if(keywordArray.includes(keyword)){
+    if (keywordArray.includes(keyword)) {
       // return a alert
-      setError("Already added.")
+      setError("Already added.");
       setkeyword("");
       return;
     }
@@ -36,8 +36,8 @@ export default function App() {
       .catch((err) => console.error(err));
   }
 
-  function handleDelete(key){
-    const newKeywords = keywordArray.filter(keyword=> keyword !== key);
+  function handleDelete(key) {
+    const newKeywords = keywordArray.filter((keyword) => keyword !== key);
     setKeywordArray(newKeywords);
   }
 
@@ -46,18 +46,21 @@ export default function App() {
       <div className="flex flex-col items-center gap-6 p-8">
         <h1>LinkedIn Job Scraper</h1>
         <div className="relative">
-        <form onSubmit={handleKeywordButton} className="flex items-center gap-3">
-          <input
-            type="text"
-            value={keyword}
-            onChange={(e) => setkeyword(e.target.value.trim())}
-            className="scraper-input"
-          />
-          <button className="input-btn" type="submit">
-            Add
-          </button>
-        </form>
-        {error && (
+          <form
+            onSubmit={handleKeywordButton}
+            className="flex items-center gap-3"
+          >
+            <input
+              type="text"
+              value={keyword}
+              onChange={(e) => setkeyword(e.target.value.trim())}
+              className="scraper-input"
+            />
+            <button className="input-btn" type="submit">
+              Add
+            </button>
+          </form>
+          {error && (
             <div className="absolute top-full left-0 mt-3 z-10 px-3 py-2 rounded-md text-sm bg-[var(--bg)] text-[var(--text-h)] border border-[var(--accent-border)] shadow-[var(--shadow)]">
               <div className="absolute -top-2 left-6 w-3 h-3 rotate-45 bg-[var(--bg)] border-l border-t border-[var(--accent-border)]"></div>
               {error}
@@ -67,7 +70,11 @@ export default function App() {
         <div className="flex flex-wrap gap-2 justify-center max-w-3xl">
           {keywordArray.length > 0 &&
             keywordArray.map((keyword) => (
-              <KeywordChip key={keyword} keyword={keyword} handleDelete={handleDelete}/>
+              <KeywordChip
+                key={keyword}
+                keyword={keyword}
+                handleDelete={handleDelete}
+              />
             ))}
         </div>
 
