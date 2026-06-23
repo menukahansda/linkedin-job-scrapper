@@ -10,6 +10,7 @@ dotenv.config();
 // STEP3: You need to login GMAIL ID and compose New email
 // STEP4: You need to send an email to the recruiter email id with formal message for applying job, Attaching resume of a candidate with submission details
 
+// #region AuthenticateLinkedIn
 async function authenticateLinkedIn(page) {
   await page.goto("https://www.linkedin.com/login");
 
@@ -19,6 +20,9 @@ async function authenticateLinkedIn(page) {
 
   await page.waitForURL(/.*feed.*/, { timeout: 30000 });
 }
+// #endregion
+
+// #region Within 24 hrs
 function isWithin24Hours(timeText) {
   if (!timeText) return false;
 
@@ -40,6 +44,9 @@ function isWithin24Hours(timeText) {
 
   return false;
 }
+// #endregion
+
+// #region search jobs
 async function searchJobs(page, roleKeywords, hiringWords) {
   // mails and urls are stored in format : {post : [emails/urls]}
   let mails = {},
@@ -103,7 +110,9 @@ async function searchJobs(page, roleKeywords, hiringWords) {
   }
   return { mails, urls };
 }
+// #endregion
 
+// #region Create gmail transporter
 async function createGMailTransporter() {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -115,7 +124,9 @@ async function createGMailTransporter() {
   await transporter.verify();
   return transporter;
 }
+// #endregion
 
+// #region Send Email
 async function sendEmail(transporter, resume_file_path, post, emails, msg) {
   await transporter.sendMail({
     from: process.env.EMAIL,
@@ -131,7 +142,9 @@ async function sendEmail(transporter, resume_file_path, post, emails, msg) {
     ],
   });
 }
+// #endregion
 
+// #region runAutomation
 export async function runAutomation() {
   const browser = await chromium.launch({
     headless: true,
@@ -239,6 +252,10 @@ export async function runAutomation() {
     await browser.close();
   }
 }
+// #endregion
+
+// #region standalone call
 if (import.meta.url === `file://${process.argv[1]}`) {
   runAutomation().catch(console.error);
 }
+// #endregion
