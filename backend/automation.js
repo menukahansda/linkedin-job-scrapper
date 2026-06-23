@@ -147,7 +147,7 @@ async function sendEmail(transporter, resume_file_path, post, emails, msg) {
 // #region runAutomation
 export async function runAutomation() {
   const browser = await chromium.launch({
-    headless: true,
+    headless: false, // write true if you don't want a visible browser automation and false for testing purpose
   });
   try {
     const context = await browser.newContext();
