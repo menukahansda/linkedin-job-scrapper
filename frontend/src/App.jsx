@@ -29,6 +29,11 @@ export default function App() {
       .catch((err) => console.error(err));
   }
 
+  function handleDelete(key){
+    const newKeywords = keywordArray.filter(keyword=> keyword !== key);
+    setKeywordArray(newKeywords);
+  }
+  
   return (
     <>
       <div className="flex flex-col items-center gap-6 p-8">
@@ -47,7 +52,7 @@ export default function App() {
         <div className="flex flex-wrap gap-2 justify-center max-w-3xl">
           {keywordArray.length > 0 &&
             keywordArray.map((keyword) => (
-              <KeywordChip key={keyword} keyword={keyword} />
+              <KeywordChip key={keyword} keyword={keyword} handleDelete={handleDelete}/>
             ))}
         </div>
 
