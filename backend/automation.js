@@ -1,5 +1,6 @@
 import { chromium } from "playwright";
 import nodemailer from "nodemailer";
+import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -255,7 +256,9 @@ export async function runAutomation() {
 // #endregion
 
 // #region standalone call
-if (import.meta.url === `file://${process.argv[1]}`) {
+const __filename = fileURLToPath(import.meta.url);
+
+if (process.argv[1] === __filename) {
   runAutomation().catch(console.error);
 }
 // #endregion
