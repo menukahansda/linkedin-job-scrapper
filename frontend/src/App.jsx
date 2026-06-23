@@ -31,6 +31,12 @@ export default function App() {
     console.log("Sending request to:", `${API_URL}/search-jobs`);
     fetch(`${API_URL}/search-jobs`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        keywords: keywordArray
+      })
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
