@@ -11,15 +11,16 @@ export default function App() {
 
   function handleKeywordButton(e) {
     e.preventDefault();
-    if (!keyword) return; // prevent empty keywords
+    const trimmedKeyword = keyword.trim();
+    if (!trimmedKeyword) return; // prevent empty keywords
 
-    if (keywordArray.includes(keyword)) {
+    if (keywordArray.includes(trimmedKeyword)) {
       // return a alert
       setError("Already added.");
       setkeyword("");
       return;
     }
-    setKeywordArray((prev) => [...prev, keyword]);
+    setKeywordArray((prev) => [...prev, trimmedKeyword]);
     setkeyword("");
   }
   function handleSearchButton() {
@@ -54,7 +55,7 @@ export default function App() {
               type="text"
               value={keyword}
               onChange={(e) => {
-                setkeyword(e.target.value.trim());
+                setkeyword(e.target.value);
                 setError("");
               }}
               className="scraper-input"
